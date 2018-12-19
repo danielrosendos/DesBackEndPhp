@@ -12,7 +12,7 @@ class Desafio extends Model
 
     protected $primaryKey = 'id';
 
-    protected $table = 'desafio';
+    protected $table = 'desafios';
 
     protected $fillable = array('id', 'nome', 'descricao', 'prazo', 'concluida');
 

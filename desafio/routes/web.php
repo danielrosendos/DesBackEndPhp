@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
+
+Route::get('/', 'DesafioController@listagemDesafio')->name('home');
+
+Route::get('/registrarTarefa/{id}', 'DesafioController@addTask')->where('id', '[0-9]+');
