@@ -34,15 +34,17 @@ class DesafioRequest extends FormRequest
         return [
             'nome' => 'required | max: 100',
             'descricao' => 'required|string|max:255',
-            'prazo' => 'required | date |after:today',
+            'prazo' => 'required | date |after_or_equal:today',
             'prioridade' => 'required | max: 100'
         ];
+        //regras de validação
     }
 
+    //Onde e como será mostrado os Erros Caso o form nao seja bem preenchido
     public function messages(){
         return[
             'required' => 'O campo :attribute não podem estar vazios',
-            'prazo.before'=> 'A Data tem que ser Atual ou Posterior',
+            'prazo.after_or_equal'=> 'A Data tem que ser Atual ou Posterior',
         ];
     }
 }
