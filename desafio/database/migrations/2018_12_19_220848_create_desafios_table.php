@@ -18,6 +18,7 @@ class CreateDesafiosTable extends Migration
             $table->string('nome');
             $table->string('descricao');
             $table->date('prazo');
+            $table->string('prioridade');
             $table->boolean('concluida')->nullable();
             $table->datetime('updated_at');
             $table->datetime('created_at');

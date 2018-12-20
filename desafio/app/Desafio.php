@@ -14,7 +14,7 @@ class Desafio extends Model
 
     protected $table = 'desafios';
 
-    protected $fillable = array('id', 'nome', 'descricao', 'prazo', 'concluida');
+    protected $fillable = array('id', 'nome', 'descricao', 'prazo', 'prioridade', 'concluida');
 
     protected $guarded = ['id'];
 }

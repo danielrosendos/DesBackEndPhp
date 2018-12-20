@@ -4,7 +4,10 @@
 namespace App\Http\Controllers;
 
 //Chamada das Classses do Laravel.
-use Illuminate\Http\Request;
+use Illuminate\Http\Request as HttpRequest;
+use Request;
+use App\Http\Requests\DesafioRequest;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
 
@@ -40,34 +43,20 @@ class DesafioController extends Controller{
         $tarefa = Desafio::find($id);
 
         if(empty($tarefa)){
-            return view('register.task')->with('1', $tarefa);
+            return view('register.task')->with('l', $tarefa);
         }
 
-        return view('register.task')->with('1', $tarefa);
+        return view('register.task')->with('l', $tarefa);
     }
 
-    public function attStatus(Request $request){
-        $aux = $request->id;
-        
+    public function add(DesafioRequest $request, $id){
 
-        if(empty($aux)){
-            return CatracaControler::chamados();
+        if($id==0){
+            Desafio::create($request->all());
+        }else{
+            Desafio::find($id)->update(Request::except($id));
         }
-
-        Contato::find($aux)->update(['status' => 1]);
-
-        return CatracaControler::chamados();
-    }
-
-    public function removeStatus(Request $request){
-
-        if(empty($request->id)){
-            return CatracaControler::chamados();
-        }
-
-        Contato::find($request->id)->delete();
-
-        return CatracaControler::chamados();
+        return redirect()->action('DesafioController@addTask', $id = 0)->withInput(Request::only('nome'));
     }
 
 }

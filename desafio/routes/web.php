@@ -15,4 +15,6 @@ Auth::routes();
 
 Route::get('/', 'DesafioController@listagemDesafio')->name('home');
 
-Route::get('/registrarTarefa/{id}', 'DesafioController@addTask')->where('id', '[0-9]+');
+Route::any('/registrarTarefa/{id}', 'DesafioController@addTask')->where('id', '[0-9]+');
+
+Route::any('/adicionar/{id}', 'DesafioController@add')->where('id', '[0-9]+');
