@@ -32,8 +32,8 @@ class DesafioController extends Controller{
 
     //Função de pesquisa / listagem das tarefas
     public function listagemDesafio(){
-        //table paginada por 20 elementos
-        $desafio = Desafio::paginate(20);
+        //table paginada por 1 elementos só para exemplificar a paginação
+        $desafio = Desafio::paginate(1);
     
         return view('listagem.desafio')->with(['desafio'=> $desafio]);
     }
@@ -57,6 +57,26 @@ class DesafioController extends Controller{
             Desafio::find($id)->update(Request::except($id));
         }
         return redirect()->action('DesafioController@addTask', $id = 0)->withInput(Request::only('nome'));
+    }
+
+    public function attStatus(HttpRequest $request){
+        $aux = $request->id;
+        
+
+        if(empty($aux)){
+            return DesafioController::listagemDesafio();
+        }
+
+        Desafio::find($aux)->update(['concluida' => 1]);
+
+        return DesafioController::listagemDesafio();
+    }
+
+    public function deletar($id){
+        $tarefa = Desafio::find($id);
+        $tarefa->delete();
+
+        return redirect()->action('DesafioController@listagemDesafio');
     }
 
 }
