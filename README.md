@@ -29,3 +29,7 @@ php artisan serve
 ```
 
 E entrar em 127.0.0.1:8000
+
+Para ver um projeto mais completo de um sistema feio em laravel, basta baixar o projeto do link abaixo
+
+https://gitlab.com/sport127/SistemaCatracasColegioLourencoFilho
